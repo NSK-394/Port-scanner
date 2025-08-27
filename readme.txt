@@ -1,2 +1,0 @@
-A simple Python-based Port Scanner that checks whether specific network ports on a given host (IP or domain) are open or closed.
-This project uses Python’s built-in socket library and is great for beginners learning networking + cybersecurity basics.
