@@ -20,12 +20,15 @@ python port_scanner.py 192.168.1.10 -p 1-1024 -b    # range + banners
 python port_scanner.py localhost -p 22,80,8000-8100 -t 1 -w 200
 ```
 
+Real run (`python port_scanner.py scanme.nmap.org -b -t 2`, a host the Nmap project allows people to scan):
+
 ```
 Scanning scanme.nmap.org (17 ports)...
-[open]    22/tcp  ssh  SSH-2.0-OpenSSH_6.6.1p1 Ubuntu-2ubuntu2.13
 [open]    80/tcp  http
+[open]  8080/tcp  unknown
 Done: 2 open
 ```
+(`unknown` means the local services database has no name for that port. Service names depend on the OS.)
 
 ## How it works
 A TCP connect scan completes the full three-way handshake (`connect_ex` returns 0 when the port is open). It's slower and noisier than a SYN scan, but it needs no root privileges or raw sockets. Each port is an I/O-bound task, so threads give a near-linear speedup until you hit the timeout floor.
